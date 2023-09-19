@@ -1,8 +1,11 @@
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductsModule } from './products/products.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+
 import { CommonModule } from './common/common.module';
+import { ProductsModule } from './products/products.module';
 import { SeedModule } from './seed/seed.module';
 import { FilesModule } from './files/files.module';
 
@@ -19,6 +22,9 @@ import { FilesModule } from './files/files.module';
       autoLoadEntities: true,
       synchronize: true, // Only development
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }), // Servir de la carpeta public
     ProductsModule,
     CommonModule,
     SeedModule,
