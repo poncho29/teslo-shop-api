@@ -12,19 +12,9 @@
 
 4. Cambiar las variables de entorno
 
-5. levantar la base de datos
+5. levantar la base de datos: ```docker-compose up -d```
 
-```
-docker-compose up -d
-```
+6. Levantar servidor: ```yarn start:dev```
 
-6. Ekecutar SEED
-```
-http://localhost:3000/api/seed
-```
+7. Ejecutar SEED: ```http://localhost:3000/api/seed```
 
-7. Levantar servidor:
-
-```
-yarn start:dev
-```
