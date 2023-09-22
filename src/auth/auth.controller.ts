@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 
 import { CreateUserDto, LoginUserDto } from './dto';
 
-import { GetUser } from './decorators/get-user.decorator';
+import { GetUser, RawHeaders } from './decorators';
 
 import { User } from './entities/user.entity';
 
@@ -25,11 +25,15 @@ export class AuthController {
 
   @Get('private')
   @UseGuards(AuthGuard())
-  testingPrivateRoute(@GetUser() user: User) {
+  testingPrivateRoute(
+    @GetUser() user: User,
+    @RawHeaders() rawHeaders: string[],
+  ) {
     return {
       ok: true,
       message: 'Privete route',
       user,
+      rawHeaders,
     };
   }
 }
