@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 
 import { CreateUserDto, LoginUserDto } from './dto';
 
-import { GetUser, RawHeaders, RoleProtected } from './decorators';
+import { Auth, GetUser, RawHeaders, RoleProtected } from './decorators';
 
 import { User } from './entities/user.entity';
 
@@ -47,6 +47,15 @@ export class AuthController {
   privateRoute2(@GetUser() user: User) {
     return {
       user,
+    };
+  }
+
+  @Get('private3')
+  @Auth(ValidRoles.admin)
+  privateRoute3() {
+    return {
+      ok: true,
+      message: 'private route 3',
     };
   }
 }
